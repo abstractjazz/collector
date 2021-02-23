@@ -10,22 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_22_220420) do
-
-  create_table "board_memories", force: :cascade do |t|
-    t.integer "board_id"
-    t.integer "memory_id"
-  end
+ActiveRecord::Schema.define(version: 2021_02_22_025104) do
 
   create_table "boards", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.integer "user_id"
   end
 
   create_table "memories", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "uploaded_photo"
+    t.integer "board_id"
     t.string "user_id"
   end
 
