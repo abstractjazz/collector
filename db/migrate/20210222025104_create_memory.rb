@@ -6,7 +6,7 @@ class CreateMemory < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :description
       t.string :uploaded_photo
-      t.integer :user_id 
+      t.string :user_id
     end
   end 
 end

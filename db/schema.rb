@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_02_22_220420) do
     t.string "name"
     t.string "description"
     t.string "uploaded_photo"
-    t.integer "user_id"
+    t.string "user_id"
   end
 
   create_table "users", force: :cascade do |t|
