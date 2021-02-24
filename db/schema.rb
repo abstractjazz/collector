@@ -21,9 +21,8 @@ ActiveRecord::Schema.define(version: 2021_02_22_025104) do
   create_table "memories", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.string "uploaded_photo"
+    t.string "uploaded_memory"
     t.integer "board_id"
-    t.string "user_id"
   end
 
   create_table "users", force: :cascade do |t|

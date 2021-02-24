@@ -1,0 +1,8 @@
+<h1>Boards</h1>
+
+<ul>
+<li><% @boards.each do |board| %></li>
+<li><strong>Name: <%= board.name %></strong></li>
+<li>Description: <%= board.description %></li><br>
+<% end %> 
+</ul>

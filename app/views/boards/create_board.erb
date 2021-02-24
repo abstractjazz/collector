@@ -1,10 +1,28 @@
+<form action='/boards' method="POST" enctype="multipart/form-data">
+<h1>Create Your Board<h1> 
+
+<p><label for='board_name'>Name Your Board:</label>
+<input id='board_name' type='text' name='board[name]'/></p>
+<p><label for='board_description'>What is this board about?: </label>
+<input id='board_description' name='board[description]'/></p>
+
+<h1>What Memories do you want to include?</h1>
+
+<label for='memory_name'> Name this memory: </label>
+<input id='memory_name' type='text' name='board[memories][][name]'/>
+<label for='memory_description'>Describe this memory</label>
+<input id='memory_description' type='text' name='board[memories][][description]'/>
+<label for='uploaded_memory'> Add files: </label>
+<input id='uploaded_memory' type='text' name='board[memories][][uploaded_memory']/><br><br>
+
+<label for='memory_name'> Name this memory: </label>
+<input id='memory_name' type='text' name='board[memories][][name]'/>
+<label for='memory_description'>Describe this memory</label>
+<input id='memory_description' type='text' name='board[memories][][description]'/>
+<label for='uploaded_memory'> Add files: </label>
+<input id='uploaded_memory' type='text' name='board[memories][][uploaded_memory']/><br><br>
 
 
 
-
-
-<form action="/image" method="POST" enctype="multipart/form-data">
-  <label>Upload a photo:</label>
-  <input type="file" name="file" value="upload">
-  <input type="submit" value="submit">
-  </form>
+<input type = 'submit' value = 'submit'>  
+</form>
