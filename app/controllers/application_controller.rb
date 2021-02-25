@@ -10,7 +10,10 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    erb :index
+    @user = User.all
+    @boards = Board.all
+    erb :'application/index'
+    
   end
 
 
