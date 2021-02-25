@@ -2,11 +2,11 @@
 
 
 
-<h4>Name: <%= @boards.name %> </h4>
-<h4>Description: <%= @boards.description %> </h4>
+<h4>Name: <%= @board.name %> </h4>
+<h4>Description: <%= @board.description %> </h4>
 
 <ul>
-<% @boards.memories.each do |memory| %>
+<% @board.memories.each do |memory| %>
     <li>Name: <%= memory.name %></li>
     <li>Description: <%= memory.description %></li>
     <li>Uploaded Memory: <%= memory.uploaded_memory %></li><br><br>

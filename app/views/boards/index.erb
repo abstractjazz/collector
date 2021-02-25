@@ -1,7 +1,8 @@
 <h1>Boards</h1>
+<p>Welcome, <%=current_user.username %>
 
 <ul>
-<li><% @boards.each do |board| %></li>
+<li><% @board.each do |board| %></li>
 <li><strong>Name: <%= board.name %></strong></li>
 <li>Description: <%= board.description %></li><br>
 <% end %> 

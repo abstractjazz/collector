@@ -1,29 +1,80 @@
 class BoardController < ApplicationController 
 
     get '/boards' do 
-        @boards= Board.all 
+        if logged_in?
+        @board = current_user.boards
         erb :'boards/index'
+        else 
+            redirect to '/login'
+        end 
     end 
    
     get '/boards/new' do 
-        erb :'boards/create_board'
-    end 
+        if logged_in?
+            erb :'boards/create_board'
+        else 
+            redirect to '/login'
+        end
+    end  
     
-    get '/boards/:id' do 
-        @boards = Board.find(params[:id])
-        erb :'boards/show_board'
-      end 
-
     post '/boards' do 
-        board = Board.create(name: params[:board][:name], description: params[:board][:description])
-
-        params[:board][:memories].each do |memory_info|
-            memory = Memory.new(memory_info)
-            memory.board = board
-            memory.save
+        if logged_in?
+            if params[:board] == ""
+                redirect to '/boards/new'
+            else 
+            
+                @board = current_user.boards.build(name: params[:board][:name], description: params[:board][:description])
+                params[:board][:memories].each do |memory_info|
+                @memory = Memory.new(memory_info)
+                @memory.board = @board
+                end 
+                if @board.save
+                    redirect to '/boards'
+                else
+                    redirect to '/login'
+                # binding.pry
+                end 
+            end 
         end 
-        redirect to "/boards/#{board.id}"
-        # @memories = Memory.all
     end 
+
+
+    get '/boards/:id' do 
+        @board = Board.find_by_id(params[:id])
+        erb :'boards/show_board'
+    end 
+
+    get '/boards/:id/edit' do 
+        if logged_in?
+            @board = Board.find_by_id(params[:id])
+            if @board && @board.user == current_user
+                erb:'boards/edit_board'
+            else 
+            redirect to '/application/index'
+            end 
+        end 
+    end 
+
+    patch '/boards/:id' do 
+        if logged_in?
+            if params[:board] == ""
+                redirect to '/boards/#{@board.id)/edit'
+            else 
+                @board = Board.find_by_id(params[:id])
+                if @board.update(board: params[:board])
+                    redirect to '/boards/#{@board.id}'
+                else 
+                    redirect to '/boards/#{@board.id}/edit'
+                end 
+            else 
+                redirect to '/boards'
+            end 
+        end 
+    else 
+        redirect to '/login'
+    end 
+end 
+
+
 
 end 

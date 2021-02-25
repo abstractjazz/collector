@@ -1,5 +1,8 @@
 
+<% if flash.has?(:message) %>
+<%= flash[:message] %>
+<% end %> 
 
-<h1>There are currently <%= @user.count %> collectors gathering cool stuff across <%= @boards.count %> boards.<h1><br>
+<h1>Right now <%= @user.count %> collectors are collecting cool sh*t across <%= @boards.count %> boards.<h1><br>
 
 <h1><a href= '/signup'>Join them!</a><h1>
