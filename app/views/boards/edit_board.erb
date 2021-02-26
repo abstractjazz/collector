@@ -1,0 +1,19 @@
+<h1>Edit <%= @board.name %></h1>
+
+<form action ='/boards/<%= @board.id %>' method='POST'>
+    <input type='hidden' name='_method' value='PATCH'>
+
+<label for='name'>Board Name</label>
+<input type='/text' name='board[name]' value='<%= @board.name %>'><br><br>
+
+<label for='name'>Board Description</label>
+<input type='/text' name='board[description]' value='<%= @board.description %>'><br><br>
+
+
+
+
+
+
+
+<input type='submit'>
+</form>

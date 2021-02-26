@@ -28,6 +28,7 @@ class BoardController < ApplicationController
                 @memory = Memory.new(memory_info)
                 @memory.board = @board
                 end 
+
                 if @board.save
                     redirect to '/boards'
                 else
@@ -35,6 +36,8 @@ class BoardController < ApplicationController
                 # binding.pry
                 end 
             end 
+        else 
+            redirect to '/login'
         end 
     end 
 
@@ -50,31 +53,32 @@ class BoardController < ApplicationController
             if @board && @board.user == current_user
                 erb:'boards/edit_board'
             else 
-            redirect to '/application/index'
+            redirect to '/boards'
             end 
+        else 
+        redirect to '/login'
         end 
     end 
 
     patch '/boards/:id' do 
         if logged_in?
             if params[:board] == ""
-                redirect to '/boards/#{@board.id)/edit'
+                redirect to '/boards/#{params[:id]}/edit'
             else 
                 @board = Board.find_by_id(params[:id])
-                if @board.update(board: params[:board])
-                    redirect to '/boards/#{@board.id}'
-                else 
+                if @board && @board.user == current_user
+                    if @board.update(params[:board])
+                        redirect to "/boards/#{@board.id}"
+                    else 
                     redirect to '/boards/#{@board.id}/edit'
-                end 
-            else 
+                    end 
+                else 
                 redirect to '/boards'
+                end 
             end 
-        end 
-    else 
-        redirect to '/login'
+        else 
+            redirect to '/login' 
+        end  
     end 
-end 
-
-
 
 end 
