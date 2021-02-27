@@ -2,7 +2,7 @@ class BoardController < ApplicationController
 
     get '/boards' do 
         if logged_in?
-        @board = current_user.boards
+            @boards = current_user.boards
         erb :'boards/index'
         else 
             redirect to '/login'
@@ -22,34 +22,34 @@ class BoardController < ApplicationController
             if params[:board] == ""
                 redirect to '/boards/new'
             else 
-            
-                @board = current_user.boards.build(name: params[:board][:name], description: params[:board][:description])
+
+
+
+                @board = current_user.boards.new(name: params[:board][:name], description: params[:board][:description])
+               
+
                 params[:board][:memories].each do |memory_info|
+            
                 @memory = Memory.new(memory_info)
                 @memory.board = @board
-                end 
-
-                if @board.save
-                    redirect to '/boards'
-                else
-                    redirect to '/login'
+                @memory.save
                 # binding.pry
                 end 
+                erb :'boards/show_board'
             end 
-        else 
+        else  
             redirect to '/login'
         end 
     end 
 
-
     get '/boards/:id' do 
-        @board = Board.find_by_id(params[:id])
+        @board = Board.find_by_id(params[:id])        
         erb :'boards/show_board'
     end 
 
     get '/boards/:id/edit' do 
         if logged_in?
-            @board = Board.find_by_id(params[:id])
+            @board = current_user.boards.find_by(id: params[:id])
             if @board && @board.user == current_user
                 erb:'boards/edit_board'
             else 
@@ -61,6 +61,7 @@ class BoardController < ApplicationController
     end 
 
     patch '/boards/:id' do 
+        binding.pry
         if logged_in?
             if params[:board] == ""
                 redirect to '/boards/#{params[:id]}/edit'
@@ -81,4 +82,15 @@ class BoardController < ApplicationController
         end  
     end 
 
+    delete '/boards/:id/delete' do 
+        if logged_in?
+            @board = Board.find_by_id(params[:id])
+            if @board && @board.user == current_user
+            @board.delete
+            end 
+            redirect to '/boards'
+        else 
+        redirect to '/login'
+        end  
+    end 
 end 

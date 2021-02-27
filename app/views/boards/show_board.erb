@@ -2,16 +2,28 @@
 
 
 
-<h4>Name: <%= @board.name %> </h4>
-<h4>Description: <%= @board.description %> </h4>
+<h4>Collection Name: <%= @board.name %> </h4>
+<h4>Collection Description: <%= @board.description %> </h4>
 
-<ul>
+<div class='container'>
 <% @board.memories.each do |memory| %>
-   <li>Name: <%= memory.name %></li>
-    <li>Description: <%= memory.description %></li>
-    <li>Uploaded Memory: <%= memory.uploaded_memory %></li><br><br>
-<% end %>
-</ul>
+   
+   <h4>Name:</h4><%= memory.name %>
+    <h4>Uploaded Memory: </h4><div class='memory'><iframe src="<%=memory.uploaded_memory%>" width="500" height="500"/><br><br></iframe></div>
+    Description: <%= memory.description %><br><br><br><br>
+</div>
+   
+    <% end %>
+
+
+<form method='POST' action='/boards/<%= @board.id %>/delete'>
+<input id='hidden' type='hidden' name='_method' value='DELETE'>
+<input type='submit' value='Delete Collection'><br><br>
+</form>
+
+<a href='/boards/<%= @board.id %>/edit'>You could also edit this collection, instead</a>
+
+
 
 
 

@@ -1,9 +1,9 @@
 <h1>Boards</h1>
 <p>Welcome, <%=current_user.username %>
 
+<% @boards.each do |board| %>
 <ul>
-<li><% @board.each do |board| %></li>
-<a href="boards/#{.id}"><li><strong>Name: <%= board.name %></strong></li></a>
+<li><a href="/boards/#{board.id}">Name: <%= board.name %></a></li>
 <li>Description: <%= board.description %></li><br>
-<% end %> 
 </ul>
+<% end %>
