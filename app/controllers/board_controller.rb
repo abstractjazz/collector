@@ -22,18 +22,14 @@ class BoardController < ApplicationController
             if params[:board] == ""
                 redirect to '/boards/new'
             else 
-
-
-
                 @board = current_user.boards.new(name: params[:board][:name], description: params[:board][:description])
                
-
                 params[:board][:memories].each do |memory_info|
             
                 @memory = Memory.new(memory_info)
                 @memory.board = @board
                 @memory.save
-                # binding.pry
+              
                 end 
                 erb :'boards/show_board'
             end 
