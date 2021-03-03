@@ -63,28 +63,16 @@ class BoardController < ApplicationController
                 redirect to '/boards/#{params[:id]}/edit'
             else 
                 @board = Board.find_by_id(params[:id]) 
-                @board.update(name: params[:board][:name], description: params[:board][:description])                
-                @board.name = params[:board]
-                @memory = params[:board][:memories]
-
+                @board.update(name: params[:board][:name], description: params[:board][:description])  
+                           
                 params[:board][:memories].each do |memory_info|
                 @memory = Memory.find_by_id(params[:id])
                 @memory.update(memory_info)
+                @memory.save
                 @memory.board = @board
-                end 
-                
-
-
-
-                binding.pry
-                # params[:board][:memories].each do |memory_info|
-                
-                # @memory.update(memory_info)
-                # @memory.board = @board
-                # @memory.save
-                # end 
                 redirect "/boards/#{@board.id}"
-            end   
+                end
+            end    
         else 
             redirect to '/login' 
         end  
