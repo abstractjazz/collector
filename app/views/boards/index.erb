@@ -1,5 +1,5 @@
 <h1>Boards</h1>
-<p>Welcome, <%=current_user.username %>
+<p>Welcome, <%=current_user.username %>. Check out your boards or make a new one!</p>
 
 <% @boards.each do |board| %>
     <ul>
@@ -7,3 +7,7 @@
     <li>Description: <%= board.description %></li><br>
     </ul>
     <% end %>
+
+    <button onclick="document.location='/boards/new'">Make a new board</button>
+
+    <br><br><a href='/logout'>Logout</a>

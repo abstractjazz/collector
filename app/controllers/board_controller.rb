@@ -57,22 +57,34 @@ class BoardController < ApplicationController
     end 
 
     patch '/boards/:id' do 
-        binding.pry
+        
         if logged_in?
             if params[:board] == ""
                 redirect to '/boards/#{params[:id]}/edit'
             else 
-                @board = Board.find_by_id(params[:id])
-                if @board && @board.user == current_user
-                    if @board.update(params[:board])
-                        redirect to "/boards/#{@board.id}"
-                    else 
-                    redirect to '/boards/#{@board.id}/edit'
-                    end 
-                else 
-                redirect to '/boards'
+                @board = Board.find_by_id(params[:id]) 
+                @board.update(name: params[:board][:name], description: params[:board][:description])                
+                @board.name = params[:board]
+                @memory = params[:board][:memories]
+
+                params[:board][:memories].each do |memory_info|
+                @memory = Memory.find_by_id(params[:id])
+                @memory.update(memory_info)
+                @memory.board = @board
                 end 
-            end 
+                
+
+
+
+                binding.pry
+                # params[:board][:memories].each do |memory_info|
+                
+                # @memory.update(memory_info)
+                # @memory.board = @board
+                # @memory.save
+                # end 
+                redirect "/boards/#{@board.id}"
+            end   
         else 
             redirect to '/login' 
         end  
@@ -83,10 +95,12 @@ class BoardController < ApplicationController
             @board = Board.find_by_id(params[:id])
             if @board && @board.user == current_user
             @board.delete
-            end 
+            else 
             redirect to '/boards'
+            end 
         else 
         redirect to '/login'
-        end  
-    end 
+        end
+
+    end          
 end 

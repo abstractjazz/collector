@@ -2,27 +2,34 @@
 
 
 
-<h4>Collection Name: <%= @board.name %> </h4>
-<h4>Collection Description: <%= @board.description %> </h4>
+<h4>Board Name: <%= @board.name %> </h4>
+<h4>Board Description: <%= @board.description %> </h4>
 
-<div class='container'>
+
 <% @board.memories.each do |memory| %>
    
-   <h4>Name:</h4><%= memory.name %>
-    <h4>Uploaded Memory: </h4><div class='memory'><iframe src="<%=memory.uploaded_memory%>" width="500" height="500"/><br><br></iframe></div>
-    Description: <%= memory.description %><br><br><br><br>
-</div>
-   
+<div class="container"
+    <div class="memory">
+   <h4>Name:</h4><em><%= memory.name %></em>
+    <h4>Uploaded Memory: </h4><iframe src="<%=memory.uploaded_memory%>" width="500" height="500"/><br><br></iframe>
+    <br><br><h4>Description:</h4> <%= memory.description %><br><br><br><br>
+    <br><br><p><em>Note: For security reasons, the owner of the site you linked<br>might have disabled viewing in the frame above.<br> You can always <a href="<%=memory.uploaded_memory%>">Click here</a> to go directly to your link.</em></p>
+    </div>
+        </div>
+
     <% end %>
 
 
 <form method='POST' action='/boards/<%= @board.id %>/delete'>
 <input id='hidden' type='hidden' name='_method' value='DELETE'>
-<input type='submit' value='Delete Collection'><br><br>
+<input type='submit' value='Delete Board'><br><br>
 </form>
 
-<a href='/boards/<%= @board.id %>/edit'>You could also edit this collection, instead</a>
+<a href='/boards/<%= @board.id %>/edit'>You could also edit this board, instead</a><br><br>
 
+<a href='/boards/new'>Or, make a new board</a>
+
+<br><br><a href='/logout'>Logout</a>
 
 
 

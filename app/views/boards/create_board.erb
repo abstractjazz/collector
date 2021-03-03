@@ -6,37 +6,67 @@
 <p><label for='board_description'>What is this board about?: </label>
 <input id='board_description' name='board[description]'/></p>
 
+
+
+<h2>---------------------------------------------------------------
+<br>---------------------------------------------------------------</h2>
+
+<div class="container">
+
 <h1>What Memories do you want to include?</h1>
+    
+    <div class="memory">
+    <label for='memory_name'> Name this memory: </label>
+    <input id='memory_name' type='text' name='board[memories][][name]'/>
+    <br><br><label for='memory_description'>Describe this memory</label><br><br>
+    <textarea id='memory_description' type='text' name='board[memories][][description]' rows='4' cols='50'/></textarea><br><br>
+    <label for='uploaded_memory'> Add a link: </label>
+    <input id='uploaded_memory' type='text' name='board[memories][][uploaded_memory']/><br><br>
+    </div>
+    
+    <h3>---------------------------------------------------------------
+    <br>---------------------------------------------------------------</h3>
+    
+    
+    <div class="memory">
+    <br><br><label for='memory_name'> Name this memory: </label>
+    <input id='memory_name' type='text' name='board[memories][][name]'/>
+    <br><br><label for='memory_description'>Describe this memory</label><br><br>
+    <textarea id='memory_description' type='text' name='board[memories][][description]' rows='4' cols='50'/></textarea><br><br>
+    <label for='uploaded_memory'> Add a link: </label>
+    <input id='uploaded_memory' type='text' name='board[memories][][uploaded_memory']/><br><br>
+    </div>
+    
+    <h3>---------------------------------------------------------------
+    <br>---------------------------------------------------------------</h3>
+    
+    <div class="memory">
+    <br><br><label for='memory_name'> Name this memory: </label>
+    <input id='memory_name' type='text' name='board[memories][][name]'/>
+    <br><br><label for='memory_description'>Describe this memory</label><br><br>
+    <textarea id='memory_description' type='text' name='board[memories][][description]' rows='4' cols='50'/></textarea><br><br>
+    <label for='uploaded_memory'> Add a link: </label>
+    <input id='uploaded_memory' type='text' name='board[memories][][uploaded_memory']/><br><br>
+    </div>
 
-   
-    <label for='memory_name'> Name this memory: </label>
-    <input id='memory_name' type='text' name='board[memories][][name]'/>
-    <label for='memory_description'>Describe this memory</label>
-    <textarea id='memory_description' type='text' name='board[memories][][description]' rows='4' cols='50'/></textarea>
-    <label for='uploaded_memory'> Add a link: </label>
-    <input id='uploaded_memory' type='text' name='board[memories][][uploaded_memory']/><br><br>
-    
-    <label for='memory_name'> Name this memory: </label>
-    <input id='memory_name' type='text' name='board[memories][][name]'/>
-    <label for='memory_description'>Describe this memory</label>
-    <textarea id='memory_description' type='text' name='board[memories][][description]' rows='4' cols='50'/></textarea>
-    <label for='uploaded_memory'> Add a link: </label>
-    <input id='uploaded_memory' type='text' name='board[memories][][uploaded_memory']/><br><br>
-    
-    <label for='memory_name'> Name this memory: </label>
-    <input id='memory_name' type='text' name='board[memories][][name]'/>
-    <label for='memory_description'>Describe this memory</label>
-    <textarea id='memory_description' type='text' name='board[memories][][description]' rows='4' cols='50'/></textarea>
-    <label for='uploaded_memory'> Add a link: </label>
-    <input id='uploaded_memory' type='text' name='board[memories][][uploaded_memory']/><br><br>
-    
-    <label for='memory_name'> Name this memory: </label>
-    <input id='memory_name' type='text' name='board[memories][][name]'/>
-    <label for='memory_description'>Describe this memory</label>
-    <textarea id='memory_description' type='text' name='board[memories][][description]' rows='4' cols='50'/></textarea>
-    <label for='uploaded_memory'> Add a link: </label>
-    <input id='uploaded_memory' type='text' name='board[memories][][uploaded_memory']/><br><br>
 
-    <input type = 'submit' value = 'submit'>  
+    <h3>---------------------------------------------------------------
+    <br>---------------------------------------------------------------</h3>
+
+
+    <div class="memory">
+    <br><br><label for='memory_name'> Name this memory: </label>
+    <input id='memory_name' type='text' name='board[memories][][name]'/>
+    <br><br><label for='memory_description'>Describe this memory</label><br><br>
+    <textarea id='memory_description' type='text' name='board[memories][][description]' rows='4' cols='50'/></textarea><br><br>
+    <label for='uploaded_memory'> Add a link: </label>
+    <input id='uploaded_memory' type='text' name='board[memories][][uploaded_memory']/><br><br>
+    </div>
+
+    <input type='submit' value='submit'>  
+    </div>
+
 </form>
+
+<br><br><a href='/logout'>Logout</a>
 

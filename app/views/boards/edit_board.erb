@@ -10,20 +10,29 @@
 <input type='text' name='board[description]' value='<%= @board.description %>'><br><br>
 
 
+<div class="container">
 
 <br><br><label for='name'><strong>Memories</strong></label> <br><br>  
 
+
 <% @board.memories.each do |memory| %>
+   
+    <div class="memory">
     <label for='memory_name'>Memory Name: </label>
     <input  id='memory_name' type='text' name='board[memories][][name]' value='<%= memory.name %>'><br><br>
     
+
     <label for='memory_name'>Memory Description: </label>
     <input type='text' name='board[memories][][description]' value='<%= memory.description %>'><br><br>
-    
-    <label for='memory_name'>Upload a New Memory: </label>
-    <input type='file' name='board[memories][][uploaded_memory]' value='<%= memory.uploaded_memory %>'><br><br>
-
-    <% end %> 
-
-<input type='submit'>
+ 
+  
+    <label for='memory_name'>Add a Different Memory: </label>
+    <input type='text' name='board[memories][][uploaded_memory]' value='<%= memory.uploaded_memory %>'><br><br>
+    </div>
+   <% end %>
+  
+<input type='submit' value='submit'>
+</div>
 </form>
+
+<br><br><a href='/logout'>Logout</a>

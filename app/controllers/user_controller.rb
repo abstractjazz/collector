@@ -6,6 +6,8 @@ class UserController < ApplicationController
    end 
 
     get '/signup' do 
+        @user = User.all
+        @boards = Board.all
         if !logged_in?
             erb :'users/create_user'
         else 
@@ -19,6 +21,8 @@ class UserController < ApplicationController
             session[:user_id] = @user.id
             redirect to '/boards/new'
         else 
+            @user = User.all
+            @boards = Board.all
             flash[:message] = "You might have got something wrong or chosen a username that already exists. Give it another shot!"
             erb :'users/create_user' 
         end 
@@ -35,11 +39,14 @@ class UserController < ApplicationController
     
     post '/login' do 
         @user = User.find_by(username: params[:username])
-        if user && user.authenticate(params[:password])
+        if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            redirect '/posts'
+            redirect '/boards'
         else 
-            redirect to '/signup'
+            @user = User.all
+            @boards = Board.all
+            flash[:message] = "Can't seem to find that user. Have you already signed up?"
+            erb :'users/create_user'
         end
     end 
 

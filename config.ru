@@ -7,5 +7,5 @@ end
 use Rack::MethodOverride 
 run ApplicationController
 use BoardController
-use MemoryController 
+# use MemoryController 
 use UserController

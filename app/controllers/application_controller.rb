@@ -15,7 +15,7 @@ class ApplicationController < Sinatra::Base
   get '/' do
     @user = User.all
     @boards = Board.all
-    erb :'application/index' 
+    erb :'users/create_user' 
   end
 
 
