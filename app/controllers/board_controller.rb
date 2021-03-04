@@ -10,6 +10,7 @@ class BoardController < ApplicationController
     end 
    
     get '/boards/new' do 
+
         if logged_in?
             erb :'boards/create_board'
         else 
@@ -29,7 +30,7 @@ class BoardController < ApplicationController
                 @memory = Memory.new(memory_info)
                 @memory.board = @board
                 @memory.save
-              
+             
                 end 
                 erb :'boards/show_board'
             end 
@@ -62,17 +63,25 @@ class BoardController < ApplicationController
             if params[:board] == ""
                 redirect to '/boards/#{params[:id]}/edit'
             else 
-                @board = Board.find_by_id(params[:id]) 
+            
+                @board = Board.find_by_id(params[:id])
                 @board.update(name: params[:board][:name], description: params[:board][:description])  
-                           
+
                 params[:board][:memories].each do |memory_info|
-                @memory = Memory.find_by_id(params[:id])
-                @memory.update(memory_info)
-                @memory.save
+                
+                @memory = Memory.find_by(id: memory_info[:id]) 
+                
+                @memory.name = memory_info[:name]
+                @memory.description = memory_info[:description]
+                @memory.uploaded_memory = memory_info[:uploaded_memory]
                 @memory.board = @board
-                redirect "/boards/#{@board.id}"
+                @memory.save
+                
                 end
-            end    
+                # binding.pry
+               
+                redirect "/boards/#{@board.id}"
+            end  
         else 
             redirect to '/login' 
         end  
@@ -83,12 +92,12 @@ class BoardController < ApplicationController
             @board = Board.find_by_id(params[:id])
             if @board && @board.user == current_user
             @board.delete
-            else 
             redirect to '/boards'
+            else 
+            redirect to '/boards/:id/edit'
             end 
         else 
         redirect to '/login'
         end
-
     end          
 end 
