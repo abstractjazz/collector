@@ -8,6 +8,7 @@ class UserController < ApplicationController
     get '/signup' do 
         @user = User.all
         @boards = Board.all
+       
         if !logged_in?
             erb :'users/create_user'
         else 
@@ -17,6 +18,7 @@ class UserController < ApplicationController
 
     post '/signup' do 
         @user = User.new(username: params[:username], email: params[:email], password: params[:password])
+       
         if @user.save
             session[:user_id] = @user.id
             redirect to '/boards/new'
@@ -39,6 +41,7 @@ class UserController < ApplicationController
     
     post '/login' do 
         @user = User.find_by(username: params[:username])
+       
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
             redirect '/boards'

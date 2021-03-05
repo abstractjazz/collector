@@ -3,11 +3,10 @@
 
 <% @boards.each do |board| %>
     <ul>
-    <li><a href="/boards/<%= board.id %>">Name: <%= board.name %></a></li>
-    <li>Description: <%= board.description %></li><br>
-    </ul>
-    <% end %>
+        <li><a href="/boards/<%= board.id %>">Name: <%= board.name %></a></li>
+        <li>Description: <%= board.description %></li><br>
+        </ul>
+<% end %>
 
-    <button onclick="document.location='/boards/new'">Make a new board</button>
-
-    <br><br><a href='/logout'>Logout</a>
+<button onclick="document.location='/boards/new'">Make a new board</button>
+<br><br><a href='/logout'>Logout</a>

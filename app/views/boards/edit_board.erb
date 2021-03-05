@@ -1,39 +1,38 @@
 <h1>Edit <%= @board.name %></h1>
 
 <form action ='/boards/<%= @board.id %>' method='POST'>
-    <input id="hidden" type='hidden' name='_method' value='PATCH'>
+        
+        <input id="hidden" type='hidden' name='_method' value='PATCH'>
 
-<label for='name'>Board Name</label>
-<input type='text' name='board[name]' value='<%= @board.name %>'><br><br>
+        <label for='name'>Board Name</label>
+        <input type='text' name='board[name]' value='<%= @board.name %>'><br><br>
 
-<label for='name'>Board Description</label>
-<input type='text' name='board[description]' value='<%= @board.description %>'><br><br>
-
-
-<div class="container">
-
-<br><br><label for='name'><strong>Memories</strong></label> <br><br>  
+        <label for='name'>Board Description</label>
+        <input type='text' name='board[description]' value='<%= @board.description %>'><br><br>
 
 
-<% @board.memories.each do |memory| %>
+    <div class="container">
+
+        <br><br><label for='name'><strong>Memories</strong></label> <br><br>  
+        <% @board.memories.each do |memory| %>
    
-    <div class="memory">
-    <label for='memory_name'>Memory Name: </label>
-    <input  id='memory_name' type='text' name='board[memories][][name]' value='<%= memory.name %>'><br><br>
+            <div class="memory">
+                <label for='memory_name'>Memory Name: </label>
+                <input  id='memory_name' type='text' name='board[memories][][name]' value='<%= memory.name %>'><br><br>
     
 
-    <label for='memory_name'>Memory Description: </label>
-    <input type='text' name='board[memories][][description]' value='<%= memory.description %>'><br><br>
+                <label for='memory_name'>Memory Description: </label>
+                <input type='text' name='board[memories][][description]' value='<%= memory.description %>'><br><br>
  
   
-    <label for='memory_name'>Add a Different Memory: </label>
-    <input type='text' name='board[memories][][uploaded_memory]' value='<%= memory.uploaded_memory %>'><br><br>
+                <label for='memory_name'>Add a Different Memory: </label>
+                <input type='text' name='board[memories][][uploaded_memory]' value='<%= memory.uploaded_memory %>'><br><br>
     
-    <input type='hidden' name='board[memories][][id]' value='<%= memory.id %>'/>
+                <input type='hidden' name='board[memories][][id]' value='<%= memory.id %>'/>
+            </div>
+        <% end %>
+                <input type='submit' value='submit'>
     </div>
-   <% end %>
-<input type='submit' value='submit'>
-</div>
 </form>
 
 <br><br><a href='/logout'>Logout</a>

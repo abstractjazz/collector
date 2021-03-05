@@ -78,8 +78,7 @@ class BoardController < ApplicationController
                 @memory.save
                 
                 end
-                # binding.pry
-               
+                
                 redirect "/boards/#{@board.id}"
             end  
         else 

@@ -8,16 +8,15 @@
 
 <% @board.memories.each do |memory| %>
    
-<div class="container"
-    <div class="memory">
-   <h4>Name:</h4><em><%= memory.name %></em>
-    <h4>Uploaded Memory: </h4><iframe src="<%=memory.uploaded_memory%>" width="500" height="500"/><br><br></iframe>
-    <br><br><h4>Description:</h4> <%= memory.description %><br><br><br><br>
-    <br><br><p><em>Note: For security reasons, the owner of the site you linked<br>might have disabled viewing in the frame above.<br> You can always <a href="<%=memory.uploaded_memory%>">Click here</a> to go directly to your link.</em></p>
-    </div>
+    <div class="container"
+        <div class="memory">
+            <h4>Name:</h4><em><%= memory.name %></em>
+            <h4>Uploaded Memory: </h4><iframe src="<%=memory.uploaded_memory%>" width="500"     height="500"><br><br></iframe><br><br><h4>Description:</h4> <%= memory.description %><br><br><br><br>
+            <br><br><p><em>Note: For security reasons, the owner of the site you linked<br>might have disabled  viewing in the frame above.<br> You can always <a href="<%=memory.uploaded_memory%>">Click here</a>to go directly to your link.</em></p>
         </div>
+    </div>
 
-    <% end %>
+        <% end %>
 
 
 <form method='POST' action='/boards/<%= @board.id %>/delete'>
