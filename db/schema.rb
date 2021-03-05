@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2021_02_22_025104) do
     t.string "description"
     t.string "uploaded_memory"
     t.integer "board_id"
-    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
